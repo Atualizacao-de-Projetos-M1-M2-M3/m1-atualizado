@@ -7,6 +7,7 @@ export const ModalCart = () =>{
         <ul>
             <CardModalCart/>
         </ul>
+        <button>Remover todos os produtos</button>
         </div>
     )
 }
