@@ -3,7 +3,7 @@ import { ProductsContext } from "../../../Providers/ProductsContext";
 import { CardModalCart } from "./CardModalCart";
 
 export const ModalCartHomePage = () => {
-  const { setModal, modal, setCart } = useContext(ProductsContext);
+  const { setModal, modal, setCart, cart } = useContext(ProductsContext);
   return (
     <>
       {modal ? (
@@ -19,14 +19,17 @@ export const ModalCartHomePage = () => {
           <ul>
             <CardModalCart />
           </ul>
-          <button
-            onClick={() => {
-              setCart([]);
-              setModal(false);
-            }}
-          >
-            Remover todos os produtos
-          </button>
+
+          {cart.length == 0 ? null : (
+            <button
+              onClick={() => {
+                setCart([]);
+                setModal(false);
+              }}
+            >
+              Remover todos os produtos
+            </button>
+          )}
         </div>
       ) : null}
     </>
