@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { ProductsContext } from "../../Providers/ProductsContext";
 
 export const CardHomePage = () => {
-  const { products } = useContext(ProductsContext);
+  const { products, setToCart, } =
+    useContext(ProductsContext);
 
   return (
     <>
@@ -15,7 +16,13 @@ export const CardHomePage = () => {
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               <span>{product.price}</span>
-              <button>Adicionar ao carrinho</button>
+              <button
+                onClick={() => {
+                  setToCart(product);
+                }}
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           </li>
         );

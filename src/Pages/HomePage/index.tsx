@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { CardHomePage } from "../../Components/CardHomePage";
 import { Input } from "../../Components/Input/Input";
-import { ModalCart } from "../../Components/Modal/ModalCartHomePage";
+import { ModalCartHomePage } from "../../Components/Modal/ModalCartHomePage";
 import { ProductsContext } from "../../Providers/ProductsContext";
 
 export const HomePage = () => {
-  const { getProductByType,renderAllProducts } = useContext(ProductsContext);
+  const { getProductByType,renderAllProducts, setModal, } = useContext(ProductsContext);
   return (
     <>
       <header>
         <span>Weartake</span>
         <div>
-          <button>Carrinho</button>
+          <button onClick={() =>{
+            setModal(true)
+          }}>Carrinho</button>
         </div>
       </header>
       <main>
@@ -47,7 +49,7 @@ export const HomePage = () => {
           </ul>
         </section>
       </main>
-      <ModalCart />
+      <ModalCartHomePage />
     </>
   );
 };
