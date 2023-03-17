@@ -5,7 +5,10 @@ export const CardModalCart = () => {
   const { cart } = useContext(ProductsContext);
   return (
     <>
-      {cart.map((product) => {
+      {cart.length == 0?
+      <h1>Adicione intens primeiro</h1>
+      :
+      cart.map((product) => {
         return (
           <li key={product.id}>
             <img src={product.image} alt={product.name} />
