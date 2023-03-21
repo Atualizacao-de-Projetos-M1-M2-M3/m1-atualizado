@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProductsContext } from "../../../../Providers/ProductsContext";
 
 export const CardModalCart = () => {
-  const { cart } = useContext(ProductsContext);
+  const { cart, removeProductFromCart } = useContext(ProductsContext);
   return (
     <>
       {cart.length == 0?
@@ -15,7 +15,9 @@ export const CardModalCart = () => {
             <div>
               <h2>{product.image}</h2>
               <span>{product.price}</span>
-              <button>Remover produto</button>
+              <button onClick={() =>{
+                removeProductFromCart(product.id)
+              }}>Remover produto</button>
             </div>
           </li>
         );

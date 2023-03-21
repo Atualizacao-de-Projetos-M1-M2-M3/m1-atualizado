@@ -16,11 +16,10 @@ interface IProductsContext {
   toCart: IProducts[] | any;
   setToCart: React.Dispatch<any>;
   cart: IProducts[];
-  setCart: React.Dispatch<React.SetStateAction<IProducts[]>>
-  renderAfterSearch: (data: ISearch) => void
+  setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  removeProductFromCart: (id: any) => void;
+  renderAfterSearch: (data: ISearch) => void;
 }
-
-
 
 export interface IProducts {
   name: string;
@@ -88,23 +87,27 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
     addFristItem();
   }, [toCart]);
 
-  const renderAfterSearch = (data: ISearch) =>{
-    const productSearch = products.filter(product =>{
-      return data.search === ""?
-      null
-      :
-      product.name.toLowerCase().includes(data.search.toLowerCase())
+  const removeProductFromCart = (id: number) => {
+    const remove = cart.filter((product) => product.id !== id);
+    toast.success("Produto removido!")
+    setCart(remove)
 
-    })
+  };
 
-    if(productSearch.length === 0){
-      null
-      toast.error("Produto não encontrado!")
-    }else{
-      setProducts(productSearch)
+  const renderAfterSearch = (data: ISearch) => {
+    const productSearch = products.filter((product) => {
+      return data.search === ""
+        ? null
+        : product.name.toLowerCase().includes(data.search.toLowerCase());
+    });
+
+    if (productSearch.length === 0) {
+      null;
+      toast.error("Produto não encontrado!");
+    } else {
+      setProducts(productSearch);
     }
-  }
-
+  };
 
   return (
     <ProductsContext.Provider
@@ -118,7 +121,8 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
         setToCart,
         cart,
         setCart,
-        renderAfterSearch
+        removeProductFromCart,
+        renderAfterSearch,
       }}
     >
       {children}
