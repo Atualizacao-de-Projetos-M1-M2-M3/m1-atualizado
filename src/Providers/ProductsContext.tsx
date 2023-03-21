@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ISearch } from "../Components/FormSearchProduct";
 import { api } from "../Services/api";
 
 interface IProductsProps {
@@ -16,7 +17,10 @@ interface IProductsContext {
   setToCart: React.Dispatch<any>;
   cart: IProducts[];
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>
+  renderAfterSearch: (data: ISearch) => void
 }
+
+
 
 export interface IProducts {
   name: string;
@@ -30,7 +34,7 @@ export interface IProducts {
 export const ProductsContext = createContext({} as IProductsContext);
 
 export const ProductsProvider = ({ children }: IProductsProps) => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState<IProducts[]>([]);
   const [all, setAll] = useState([]);
   const [modal, setModal] = useState(false);
 
@@ -84,7 +88,23 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
     addFristItem();
   }, [toCart]);
 
-  console.log(cart);
+  const renderAfterSearch = (data: ISearch) =>{
+    const productSearch = products.filter(product =>{
+      return data.search === ""?
+      null
+      :
+      product.name.toLowerCase().includes(data.search.toLowerCase())
+
+    })
+
+    if(productSearch.length === 0){
+      null
+      toast.error("Produto não encontrado!")
+    }else{
+      setProducts(productSearch)
+    }
+  }
+
 
   return (
     <ProductsContext.Provider
@@ -97,7 +117,8 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
         toCart,
         setToCart,
         cart,
-        setCart
+        setCart,
+        renderAfterSearch
       }}
     >
       {children}

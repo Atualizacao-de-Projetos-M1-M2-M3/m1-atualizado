@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CardHomePage } from "../../Components/CardHomePage";
+import { FormSearchProduct } from "../../Components/FormSearchProduct";
 import { Input } from "../../Components/Input/Input";
 import { ModalCartHomePage } from "../../Components/Modal/ModalCartHomePage";
 import { ProductsContext } from "../../Providers/ProductsContext";
@@ -36,10 +37,7 @@ export const HomePage = () => {
             >
               Camisetas
             </button>
-            <form>
-              <Input />
-              <button type="submit">Pesquisar</button>
-            </form>
+            <FormSearchProduct/>
           </div>
         </section>
         <section>
