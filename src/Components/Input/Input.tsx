@@ -17,4 +17,4 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(({error,label,typ
         </fieldset>
     )
 } 
-)
+) 
