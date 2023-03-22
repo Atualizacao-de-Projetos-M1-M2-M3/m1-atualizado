@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProductsContext } from "../../Providers/ProductsContext";
+import gorro from "../../Assets/gorro.svg"
 
 export const CardHomePage = () => {
   const { products, setToCart, } =
@@ -10,7 +11,7 @@ export const CardHomePage = () => {
       {products?.map((product) => {
         return (
           <li key={product.id}>
-            <img src={product.image} alt={product.name} />
+            <img src={gorro} alt={product.name} />
             <div>
               <span>{product.type}</span>
               <h2>{product.name}</h2>

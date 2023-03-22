@@ -1,28 +1,56 @@
 import { useContext } from "react";
 import { CardHomePage } from "../../Components/CardHomePage";
 import { FormSearchProduct } from "../../Components/FormSearchProduct";
-import { Input } from "../../Components/Input/Input";
 import { ModalCartHomePage } from "../../Components/Modal/ModalCartHomePage";
 import { ProductsContext } from "../../Providers/ProductsContext";
+import { StyledHeader, StyledMain } from "./style";
+import { ImSearch, ImCart } from "react-icons/im";
 
 export const HomePage = () => {
-  const { getProductByType,renderAllProducts, setModal, } = useContext(ProductsContext);
+  const {
+    getProductByType,
+    renderAllProducts,
+    setModal,
+    setOpenClose,
+    openClose,
+  } = useContext(ProductsContext);
   return (
     <>
-      <header>
-        <span>Weartake</span>
+      <StyledHeader>
         <div>
-          <button onClick={() =>{
-            setModal(true)
-          }}>Carrinho</button>
-        </div>
-      </header>
-      <main>
-        <section>
+          <span>Weartake</span>
           <div>
-            <button onClick={() =>{
-              renderAllProducts()
-            }}>Todos</button>
+            <button
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              <ImCart />
+            </button>
+            {
+              !openClose?
+              <button
+              onClick={() => {
+                setOpenClose(true);
+              }}
+              >
+              <ImSearch />
+            </button>:
+            null
+            }
+          </div>
+        </div>
+      </StyledHeader>
+      <StyledMain>
+        {openClose ? <FormSearchProduct /> : null}
+        <section className="container__top">
+            <button
+              onClick={() => {
+                renderAllProducts();
+              }}
+            >
+              Todos
+            </button>
             <button
               onClick={() => {
                 getProductByType("Acessórios");
@@ -37,16 +65,14 @@ export const HomePage = () => {
             >
               Camisetas
             </button>
-            <FormSearchProduct/>
-          </div>
         </section>
-        <section>
-          <h2>Nosso produtos</h2>
+        <section className="container__bottom">
+          <h1>Nosso produtos</h1>
           <ul>
             <CardHomePage />
           </ul>
         </section>
-      </main>
+      </StyledMain>
       <ModalCartHomePage />
     </>
   );

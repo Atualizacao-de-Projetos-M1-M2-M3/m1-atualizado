@@ -19,6 +19,8 @@ interface IProductsContext {
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
   removeProductFromCart: (id: any) => void;
   renderAfterSearch: (data: ISearch) => void;
+  setOpenClose: React.Dispatch<React.SetStateAction<boolean>>
+  openClose: boolean
 }
 
 export interface IProducts {
@@ -109,6 +111,10 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
     }
   };
 
+  const [openClose, setOpenClose] = useState(false)
+
+
+
   return (
     <ProductsContext.Provider
       value={{
@@ -123,6 +129,8 @@ export const ProductsProvider = ({ children }: IProductsProps) => {
         setCart,
         removeProductFromCart,
         renderAfterSearch,
+        setOpenClose,
+        openClose
       }}
     >
       {children}
