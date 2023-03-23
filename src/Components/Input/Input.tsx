@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ error, label, type, ...rest }, ref) => {
     return (
       <StyledFielset>
-        <div>
+        <div className="container__fielset">
           <label htmlFor="inputSearch">{label}</label>
           <input
             placeholder="Digite aqui"
