@@ -9,6 +9,7 @@ export const StyledFielset = styled.fieldset`
   margin-top: -45px;
 
   div {
+    display: flex;
     width: 100%;
     position: relative;
     justify-content: flex-end;
