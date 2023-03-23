@@ -40,9 +40,9 @@ export const HomePage = () => {
             }
           </div>
         </div>
+        {openClose ? <FormSearchProduct /> : null}
       </StyledHeader>
       <StyledMain>
-        {openClose ? <FormSearchProduct /> : null}
         <section className="container__top">
             <button
               onClick={() => {
