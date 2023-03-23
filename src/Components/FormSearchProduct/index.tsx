@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react";
 import { ProductsContext } from "../../Providers/ProductsContext";
+import { StyledForm } from "./style";
+import { ImSearch } from "react-icons/im";
 
 export interface ISearch {
   search: string;
@@ -30,14 +32,14 @@ export const FormSearchProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(searchResults)}>
+    <StyledForm onSubmit={handleSubmit(searchResults)}>
       <Input
         {...register("search")}
         error= {errors.search?.message}
         type="text"
         label="Digite aqui sua pesquisa"
       />
-      <button type="submit">Pesquisar</button>
-    </form>
+      {/* <button type="submit"><ImSearch/></button> */}
+    </StyledForm>
   );
 };
