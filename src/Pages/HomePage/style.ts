@@ -85,13 +85,14 @@ export const StyledMain = styled.main`
     }
 
     ul {
-      width: 69%;
+      width: 90%;
       display: flex;
       align-self: center;
       flex-wrap: wrap;
       height: 50vh;
       overflow-y: auto;
-      gap: 32px;
+      gap: 15px;
+
     }
   }
   @media (min-width: 500px) {
