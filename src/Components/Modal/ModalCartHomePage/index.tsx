@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProductsContext } from "../../../Providers/ProductsContext";
+import { StyledBackGround, StyledModal } from "../style";
 import { CardModalCart } from "./CardModalCart";
 
 export const ModalCartHomePage = () => {
@@ -7,30 +8,40 @@ export const ModalCartHomePage = () => {
   return (
     <>
       {modal ? (
-        <div>
-          <h2>Carrinho</h2>
-          <button
+        <>
+          <StyledBackGround
             onClick={() => {
               setModal(false);
             }}
-          >
-            X
-          </button>
-          <ul>
-            <CardModalCart />
-          </ul>
+            className="background"
+          ></StyledBackGround>
+          <StyledModal>
+            <div>
+              <h2>Carrinho</h2>
+              <button
+                onClick={() => {
+                  setModal(false);
+                }}
+              >
+                X
+              </button>
+            </div>
+            <ul>
+              <CardModalCart />
+            </ul>
 
-          {cart.length == 0 ? null : (
-            <button
-              onClick={() => {
-                setCart([]);
-                setModal(false);
-              }}
-            >
-              Remover todos os produtos
-            </button>
-          )}
-        </div>
+            {cart.length == 0 ? null : (
+              <button
+                onClick={() => {
+                  setCart([]);
+                  setModal(false);
+                }}
+              >
+                Remover todos os produtos
+              </button>
+            )}
+          </StyledModal>
+        </>
       ) : null}
     </>
   );
